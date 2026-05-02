@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoodTrace — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:    #1a9e74;
+    --green-dk: #0e6b4f;
+    --green-lt: #e3f5ee;
+    --text:     #1a1a1a;
+    --muted:    #6b7280;
+    --border:   #e5e7eb;
+    --bg:       #f9faf8;
+    --white:    #ffffff;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Mulish', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--green); }
+  .step-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem 3rem;
+    width: 100%;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .demo-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--green-lt);
+    color: var(--green-dk);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .dish-name {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .dish-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row:last-of-type { border-bottom: none; }
+
+  .info-key {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .info-val {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: right;
+    max-width: 60%;
+  }
+
+  .info-val.green { color: var(--green); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--green-lt);
+    color: var(--green-dk);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .badge svg { flex-shrink: 0; }
+
+  .continue-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 1.5rem auto 0;
+    padding: 15px;
+    background: var(--green);
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.15s;
+  }
+  .continue-btn:hover { background: var(--green-dk); }
+
+  .hint {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.85rem;
+    font-weight: 300;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.68rem;
+    color: #c0c5cc;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 1.5rem;
+  }
+  .progress-track {
+    height: 3px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 33%;
+    background: var(--green);
+    border-radius: 999px;
+  }
+  .progress-text {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Food<span>Trace</span></a>
+  <span class="step-label">Step 1 of 3</span>
+</nav>
+
+<main>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill"></div></div>
+    <div class="progress-text">DEMO VIEW</div>
+  </div>
+
+  <div class="card">
+    <div class="demo-tag">&#128269; Live demo</div>
+    <div class="dish-name">Grilled Chicken</div>
+    <div class="dish-desc">Main course &middot; Scanned at your table</div>
+
+    <div class="divider"></div>
+
+    <div class="info-row">
+      <span class="info-key">Origin</span>
+      <span class="info-val">Bal&#305;kesir, Turkey</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Freshness</span>
+      <span class="info-val green">2 days old</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Allergens</span>
+      <span class="info-val green">None detected</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Certification</span>
+      <span class="info-val">
+        <span class="badge">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <circle cx="5" cy="5" r="4" stroke="#0e6b4f" stroke-width="1.2"/>
+            <path d="M2.5 5l1.8 1.8 3.2-3.2" stroke="#0e6b4f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Verified organic
+        </span>
+      </span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Farm</span>
+      <span class="info-val">Ye&#351;iltepe Farm</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Preparation</span>
+      <span class="info-val">Grilled, no additives</span>
+    </div>
+  </div>
+
+  <a class="continue-btn" href="survey.html" id="continueBtn">Continue &#8594;</a>
+  <p class="hint">This is an example &mdash; a real scan would show your actual dish.</p>
+</main>
+
+<footer>
+  FoodTrace &middot; Lean Startup MVP &middot; Digital Marketing Project
+</footer>
+
+<script>
+  var t0 = Date.now();
+  document.getElementById('continueBtn').addEventListener('click', function() {
+    var seconds = Math.round((Date.now() - t0) / 1000);
+    try { localStorage.setItem('ft_demo_time', seconds); } catch(e) {}
+  });
+</script>
+</body>
+</html>
