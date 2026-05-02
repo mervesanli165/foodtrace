@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FoodTrace — Demo</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
-
 <style>
-*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --green:#1a9e74;
@@ -23,11 +14,17 @@
 
 body {
   font-family:'Mulish', sans-serif;
-  background:var(--bg);
   color:var(--text);
   display:flex;
   flex-direction:column;
   min-height:100vh;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.92)),
+    url("food-bg.png.png");
+
+  background-size:cover;
+  background-position:center;
 }
 
 nav {
@@ -35,7 +32,7 @@ nav {
   justify-content:space-between;
   align-items:center;
   padding:1rem 1.5rem;
-  background:white;
+  background:rgba(255,255,255,0.9);
   border-bottom:1px solid var(--border);
 }
 
@@ -43,7 +40,6 @@ nav {
   font-family:'Lora', serif;
   text-decoration:none;
   color:var(--text);
-  font-size:1.2rem;
 }
 
 .logo span { color:var(--green); }
@@ -52,7 +48,6 @@ nav {
   font-size:0.65rem;
   color:var(--muted);
   text-transform:uppercase;
-  letter-spacing:0.08em;
 }
 
 main {
@@ -61,177 +56,33 @@ main {
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:2rem 1.25rem;
+  padding:2rem;
 }
 
 .card {
-  background:white;
-  border:1px solid var(--border);
+  background:rgba(255,255,255,0.95);
   border-radius:16px;
-  padding:1.75rem 1.5rem;
+  padding:1.5rem;
   width:100%;
   max-width:400px;
-  box-shadow:0 2px 20px rgba(0,0,0,0.06);
-}
-
-.demo-tag {
-  display:inline-block;
-  font-size:0.65rem;
-  font-weight:600;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  background:var(--green-lt);
-  color:var(--green-dk);
-  padding:4px 10px;
-  border-radius:999px;
-  margin-bottom:1rem;
-}
-
-.dish-name {
-  font-family:'Lora', serif;
-  font-size:1.5rem;
-  margin-bottom:0.25rem;
-}
-
-.dish-desc {
-  font-size:0.82rem;
-  color:var(--muted);
-  font-weight:300;
-  margin-bottom:1.5rem;
-}
-
-.divider {
-  height:1px;
-  background:var(--border);
-  margin-bottom:1.2rem;
 }
 
 .info-row {
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
-  padding:0.7rem 0;
+  padding:0.6rem 0;
   border-bottom:1px solid var(--border);
 }
 
-.info-row:last-of-type { border-bottom:none; }
-
-.info-key {
-  font-size:0.75rem;
-  color:var(--muted);
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
-}
-
-.info-val {
-  font-size:0.9rem;
-  font-weight:600;
-  text-align:right;
-  max-width:60%;
-}
-
-.info-val.green { color:var(--green); }
-
 .continue-btn {
-  display:block;
+  margin-top:1.5rem;
+  padding:14px;
   width:100%;
-  max-width:400px;
-  margin:1.5rem auto 0;
-  padding:15px;
   background:var(--green);
   color:white;
-  text-decoration:none;
-  text-align:center;
+  border:none;
   border-radius:8px;
-  font-weight:600;
-}
-
-.continue-btn:hover { background:var(--green-dk); }
-
-.hint {
   text-align:center;
-  font-size:0.72rem;
-  color:var(--muted);
-  margin-top:0.9rem;
-  font-weight:300;
-}
-
-footer {
-  text-align:center;
-  padding:1.25rem;
-  border-top:1px solid var(--border);
-  font-size:0.7rem;
-  color:#9ca3af;
+  text-decoration:none;
 }
 </style>
-</head>
-
-<body>
-
-<nav>
-  <a class="logo" href="index.html">Food<span>Trace</span></a>
-  <span class="step-label">Adım 2 / 3</span>
-</nav>
-
-<main>
-  <div class="card">
-    <div class="demo-tag">🔍 Örnek tarama sonucu</div>
-
-    <div class="dish-name">Izgara Tavuk</div>
-    <div class="dish-desc">Masada QR okutulduktan sonra görülebilecek örnek bilgi ekranı</div>
-
-    <div class="divider"></div>
-
-    <div class="info-row">
-      <span class="info-key">Menşei</span>
-      <span class="info-val">Balıkesir, Türkiye</span>
-    </div>
-
-    <div class="info-row">
-      <span class="info-key">Tazelik</span>
-      <span class="info-val green">2 gün içinde tedarik edildi</span>
-    </div>
-
-    <div class="info-row">
-      <span class="info-key">Alerjen</span>
-      <span class="info-val green">Belirtilen alerjen yok</span>
-    </div>
-
-    <div class="info-row">
-      <span class="info-key">Sertifika</span>
-      <span class="info-val">Organik üretim doğrulandı</span>
-    </div>
-
-    <div class="info-row">
-      <span class="info-key">Üretici</span>
-      <span class="info-val">Yeşiltepe Çiftliği</span>
-    </div>
-
-    <div class="info-row">
-      <span class="info-key">Hazırlama</span>
-      <span class="info-val">Izgara · Katkısız</span>
-    </div>
-  </div>
-
-  <a class="continue-btn" href="survey.html" id="continueBtn">Deneyimi Değerlendir →</a>
-
-  <p class="hint">
-    Bu ekran demo amaçlıdır. Gerçek kullanımda bilgiler yemeğe özel olarak gösterilir.
-  </p>
-</main>
-
-<footer>
-  FoodTrace · MVP · Dijital Pazarlama Projesi
-</footer>
-
-<script>
-var t0 = Date.now();
-document.getElementById('continueBtn').addEventListener('click', function() {
-  var seconds = Math.round((Date.now() - t0) / 1000);
-  try { localStorage.setItem('ft_demo_time', seconds); } catch(e) {}
-});
-</script>
-
-</body>
-</html>
