@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoodTrace — Anket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:    #1a9e74;
+    --green-dk: #0e6b4f;
+    --green-lt: #e3f5ee;
+    --text:     #1a1a1a;
+    --muted:    #6b7280;
+    --border:   #e5e7eb;
+    --bg:       #f9faf8;
+    --white:    #ffffff;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Mulish', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--green); }
+  .step-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem 3rem;
+    width: 100%;
+  }
+
+  /* Progress */
+  .progress-wrap {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 1.75rem;
+  }
+  .progress-track {
+    height: 3px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 66%;
+    background: var(--green);
+    border-radius: 999px;
+  }
+  .progress-text {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* Survey card */
+  .survey-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .q-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.85rem;
+  }
+
+  .question {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  /* Radio options */
+  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .option:hover { border-color: var(--green); background: var(--green-lt); }
+  .option.selected { border-color: var(--green); background: var(--green-lt); }
+
+  .option input[type="radio"] { display: none; }
+
+  .radio-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s;
+  }
+  .option.selected .radio-dot { border-color: var(--green); }
+  .radio-dot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    display: none;
+  }
+  .option.selected .radio-dot::after { display: block; }
+
+  .option-text { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+
+  /* Optional textarea */
+  .optional-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 0.88rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    resize: none;
+    outline: none;
+    transition: border-color 0.15s;
+    line-height: 1.5;
+    height: 80px;
+  }
+  textarea:focus { border-color: var(--green); background: var(--white); }
+  textarea::placeholder { color: #b0b8c1; }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--green);
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.15s, opacity 0.15s;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .submit-btn.active { opacity: 1; pointer-events: auto; }
+  .submit-btn.active:hover { background: var(--green-dk); }
+
+  /* Thank you state */
+  .thankyou-card {
+    display: none;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+
+  .check-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--green-lt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+
+  .thankyou-card h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.35rem;
+    color: var(--green-dk);
+    margin-bottom: 0.6rem;
+  }
+
+  .thankyou-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .response-summary {
+    display: inline-block;
+    margin-top: 1.25rem;
+    background: var(--green-lt);
+    color: var(--green-dk);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 999px;
+  }
+
+  .restart-link {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .restart-link:hover { color: var(--green); }
+
+  footer {
+    text-align: center;
+    padding: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.68rem;
+    color: #c0c5cc;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Food<span>Trace</span></a>
+  <span class="step-label">Step 2 of 3</span>
+</nav>
+
+<main>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill"></div></div>
+    <div class="progress-text">ANKET</div>
+  </div>
+
+  <!-- Survey card -->
+  <div class="survey-card" id="surveyCard">
+    <div class="q-label">Soru</div>
+    <div class="question">
+      Restoranda sipari&#351; verirken, yeme&#287;in i&#231;eri&#287;i ve kayna&#287;&#305; hakk&#305;nda daha fazla bilgiye kolayca ula&#351;abilmek sizin i&#231;in ne kadar &#246;nemli?
+    </div>
+
+    <div class="options" id="options">
+      <label class="option" onclick="selectOption(this, 'Çok önemli')">
+        <input type="radio" name="importance" />
+        <div class="radio-dot"></div>
+        <span class="option-text">&#199;ok &#246;nemli</span>
+      </label>
+      <label class="option" onclick="selectOption(this, 'Önemli')">
+        <input type="radio" name="importance" />
+        <div class="radio-dot"></div>
+        <span class="option-text">&#214;nemli</span>
+      </label>
+      <label class="option" onclick="selectOption(this, 'Kararsızım')">
+        <input type="radio" name="importance" />
+        <div class="radio-dot"></div>
+        <span class="option-text">Karas&#305;z&#305;m</span>
+      </label>
+      <label class="option" onclick="selectOption(this, 'Önemli değil')">
+        <input type="radio" name="importance" />
+        <div class="radio-dot"></div>
+        <span class="option-text">&#214;nemli de&#287;il</span>
+      </label>
+    </div>
+
+    <div class="optional-label">G&#246;r&#252;&#351; (opsiyonel)</div>
+    <textarea id="feedback" placeholder="G&#246;r&#252;&#351;&#252;n&#252;z varsa yazabilirsiniz (opsiyonel)"></textarea>
+
+    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+      G&#246;nder &#8594;
+    </button>
+  </div>
+
+  <!-- Thank you card -->
+  <div class="thankyou-card" id="thankyouCard">
+    <div class="check-circle">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M5 13l6 6 10-10" stroke="#1a9e74" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>Te&#351;ekk&#252;rler!</h2>
+    <p>Geri bildiriminiz kaydedildi.<br>Bu ara&#351;t&#305;rma FoodTrace projesinin geli&#351;tirilmesine katk&#305; sa&#287;layacak.</p>
+    <div class="response-summary" id="responseSummary"></div>
+    <a class="restart-link" href="index.html">&#8592; Ba&#351;a d&#246;n</a>
+  </div>
+</main>
+
+<footer>
+  FoodTrace &middot; Lean Startup MVP &middot; Dijital Pazarlama Projesi
+</footer>
+
+<script>
+  var selectedAnswer = null;
+
+  function selectOption(el, value) {
+    // Deselect all
+    var all = document.querySelectorAll('.option');
+    for (var i = 0; i < all.length; i++) {
+      all[i].classList.remove('selected');
+    }
+    // Select clicked
+    el.classList.add('selected');
+    selectedAnswer = value;
+
+    // Activate submit button
+    document.getElementById('submitBtn').classList.add('active');
+  }
+
+  function handleSubmit() {
+    if (!selectedAnswer) return;
+
+    var feedback = document.getElementById('feedback').value.trim();
+
+    // Store results locally (behavioral data)
+    try {
+      var landingTime = localStorage.getItem('ft_landing_time') || 'unknown';
+      var demoTime    = localStorage.getItem('ft_demo_time')    || 'unknown';
+
+      var result = {
+        answer:       selectedAnswer,
+        feedback:     feedback,
+        landing_sec:  landingTime,
+        demo_sec:     demoTime,
+        timestamp:    new Date().toISOString()
+      };
+
+      // Store this session's result
+      var existing = [];
+      try { existing = JSON.parse(localStorage.getItem('ft_responses') || '[]'); } catch(e) {}
+      existing.push(result);
+      localStorage.setItem('ft_responses', JSON.stringify(existing));
+    } catch(e) {}
+
+    // Show thank you state
+    document.getElementById('surveyCard').style.display = 'none';
+    var ty = document.getElementById('thankyouCard');
+    ty.style.display = 'block';
+    document.getElementById('responseSummary').textContent = 'Cevab\u0131n\u0131z: ' + selectedAnswer;
+
+    // Update progress to complete
+    document.querySelector('.progress-fill').style.width = '100%';
+    document.querySelector('.progress-text').textContent = 'TAMAMLANDI';
+    document.querySelector('.step-label').textContent = 'Step 3 of 3';
+  }
+</script>
+</body>
+</html>
