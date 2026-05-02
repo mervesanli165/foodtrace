@@ -4,13 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FoodTrace</title>
-
-<meta name="description" content="Masada QR kodu okutun. İçerik, menşei, alerjenler ve tazelik bilgilerine anında ulaşın." />
+<meta name="description" content="QR kodu okut, yemeğinin menşei, tazeliği ve alerjen bilgilerini saniyeler içinde gör." />
 
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
 
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 
 :root {
   --green:#1a9e74;
@@ -25,11 +24,15 @@
 
 body {
   font-family:'Mulish', sans-serif;
-  background:var(--bg);
   color:var(--text);
   display:flex;
   flex-direction:column;
   min-height:100vh;
+  background:
+    linear-gradient(rgba(249,250,248,0.88), rgba(249,250,248,0.94)),
+    url("food-bg.jpg");
+  background-size:cover;
+  background-position:center;
 }
 
 nav {
@@ -37,12 +40,13 @@ nav {
   justify-content:space-between;
   align-items:center;
   padding:1rem 1.5rem;
-  background:var(--white);
+  background:rgba(255,255,255,0.9);
   border-bottom:1px solid var(--border);
 }
 
 .logo {
   font-family:'Lora', serif;
+  font-size:1.2rem;
 }
 
 .logo span { color:var(--green); }
@@ -66,12 +70,13 @@ main {
   padding:3rem 1.5rem;
   text-align:center;
   max-width:480px;
-  margin:auto;
+  margin:0 auto;
 }
 
 .eyebrow {
-  font-size:0.65rem;
-  letter-spacing:0.14em;
+  font-size:0.72rem;
+  font-weight:600;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--green);
   margin-bottom:1rem;
@@ -80,27 +85,35 @@ main {
 h1 {
   font-family:'Lora', serif;
   font-size:clamp(2rem,7vw,2.8rem);
+  line-height:1.2;
   margin-bottom:1rem;
 }
 
-h1 em { color:var(--green); }
+h1 em {
+  font-style:italic;
+  color:var(--green);
+}
 
 .sub {
   font-size:1rem;
+  font-weight:300;
   color:var(--muted);
+  line-height:1.65;
   margin-bottom:2rem;
+  max-width:360px;
 }
 
 .cta {
+  display:block;
+  width:100%;
+  max-width:320px;
   background:var(--green);
   color:white;
-  padding:14px 30px;
+  padding:15px 32px;
   border-radius:8px;
   text-decoration:none;
   font-weight:600;
-  display:block;
-  width:100%;
-  max-width:300px;
+  transition:background 0.15s;
 }
 
 .cta:hover { background:var(--green-dk); }
@@ -113,8 +126,11 @@ h1 em { color:var(--green); }
 
 footer {
   text-align:center;
+  padding:1.25rem;
+  border-top:1px solid var(--border);
   font-size:0.7rem;
-  padding:1rem;
+  color:#9ca3af;
+  background:rgba(255,255,255,0.75);
 }
 </style>
 </head>
@@ -123,30 +139,26 @@ footer {
 
 <nav>
   <span class="logo">Food<span>Trace</span></span>
-  <span class="nav-pill">Erken Erişim</span>
+  <span class="nav-pill">MVP Testi</span>
 </nav>
 
 <main>
-
-  <div class="eyebrow">Yemek şeffaflığı artık mümkün</div>
+  <div class="eyebrow">Yeni bir restoran deneyimini test ediyoruz</div>
 
   <h1>
-    Yemeğini okut.<br>
-    <em>Nereden geldiğini öğren.</em>
+    Yediğin yemeğin<br>
+    <em>nereden geldiğini biliyor musun?</em>
   </h1>
 
   <p class="sub">
-    İçerik, tazelik, alerjen ve menşei bilgilerine saniyeler içinde ulaş.
+    QR kodu okut, yemeğin menşei, tazeliği ve alerjen bilgilerini saniyeler içinde gör.
   </p>
 
-  <a class="cta" href="demo.html">
-    Deneyimi Başlat →
-  </a>
+  <a class="cta" href="demo.html">Deneyimi Başlat →</a>
 
   <p class="trust">
-    🔒 Akademik proje · Spam yok · Ücretsiz
+    Akademik proje · 10 saniyelik deneyim · Ücretsiz
   </p>
-
 </main>
 
 <footer>
