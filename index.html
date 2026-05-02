@@ -1,400 +1,340 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FoodTrace — Know where your food comes from</title>
-  <meta name="description" content="Scan a QR code at your table. See where your food comes from, allergens, freshness dates, and verified certifications. Join the waitlist." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoodTrace — Know Where Your Food Comes From</title>
+<meta name="description" content="Scan a QR code at your table. See ingredient origin, allergens, freshness and certifications instantly. Join the early access waitlist." />
+<meta property="og:title" content="FoodTrace — Scan your food. Know where it comes from." />
+<meta property="og:description" content="See ingredient origin, freshness, allergens, and sourcing details in seconds." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Open Graph (for WhatsApp / Instagram link previews) -->
-  <meta property="og:title" content="FoodTrace — Scan your food. Know where it comes from." />
-  <meta property="og:description" content="One QR code reveals farm origin, allergens, and certifications. Get early access." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://foodtrace.carrd.co" />
+  :root {
+    --green:    #1a9e74;
+    --green-dk: #0e6b4f;
+    --green-lt: #e3f5ee;
+    --text:     #1a1a1a;
+    --muted:    #6b7280;
+    --border:   #e5e7eb;
+    --bg:       #f9faf8;
+    --white:    #ffffff;
+  }
 
-  <!-- Google Analytics — REPLACE G-XXXXXXXXXX with your real Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
+  html { scroll-behavior: smooth; }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+  body {
+    font-family: 'Mulish', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--text); }
+  .logo span { color: var(--green); }
+  .nav-pill {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--green-lt);
+    color: var(--green-dk);
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
 
-    :root {
-      --green:    #1a9e74;
-      --green-dk: #0e6b4f;
-      --green-lt: #e3f5ee;
-      --text:     #1a1a1a;
-      --muted:    #6b7280;
-      --border:   #e5e7eb;
-      --bg:       #fafaf8;
-      --white:    #ffffff;
-      --radius:   12px;
-      --radius-sm: 8px;
-    }
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 3.5rem 1.5rem 2rem;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 6.5vw, 2.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  h1 em { font-style: italic; color: var(--green); }
+  .subtext {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    html { scroll-behavior: smooth; }
+  /* FORM CARD */
+  .form-wrap {
+    max-width: 440px;
+    margin: 0 auto 1.25rem;
+    padding: 0 1.25rem;
+  }
+  .form-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+  .form-heading {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+  .field { margin-bottom: 0.9rem; }
+  .field label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .field input,
+  .field select {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 0.92rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .field input:focus,
+  .field select:focus { border-color: var(--green); background: var(--white); }
+  .field input::placeholder { color: #b0b8c1; }
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--green);
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: var(--green-dk); }
+  .cta-btn:active { opacity: 0.92; }
+  .trust {
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 0.85rem;
+    line-height: 1.5;
+  }
 
-    body {
-      font-family: 'Mulish', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+  /* SUCCESS */
+  .success-card {
+    display: none;
+    background: var(--green-lt);
+    border: 1px solid #9fd8c0;
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .success-icon {
+    width: 48px; height: 48px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .success-card h2 { font-family: 'Lora', serif; font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--green-dk); }
+  .success-card p { font-size: 0.85rem; color: var(--green-dk); font-weight: 300; }
 
-    /* ── NAV ─────────────────────────────────────── */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+  /* SOCIAL PROOF */
+  .proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 2.5rem;
+    padding: 0 1.25rem;
+  }
+  .avatars { display: flex; }
+  .av {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--green);
+    border: 2px solid var(--bg);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: -8px;
+  }
+  .av:first-child { margin-left: 0; }
+  .proof-text { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .proof-text strong { color: var(--text); }
 
-    .logo {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .logo span { color: var(--green); }
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); max-width: 440px; margin: 0 auto 2rem; }
 
-    .nav-badge {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: var(--green-lt);
-      color: var(--green-dk);
-      padding: 4px 10px;
-      border-radius: 999px;
-    }
+  /* BENEFITS */
+  .benefits {
+    max-width: 440px;
+    margin: 0 auto 2.5rem;
+    padding: 0 1.25rem;
+  }
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+  .benefit {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .benefit:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .b-icon {
+    width: 40px; height: 40px;
+    border-radius: 9px;
+    background: var(--green-lt);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .b-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
+  .b-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; font-weight: 300; }
 
-    /* ── HERO ─────────────────────────────────────── */
-    .hero {
-      text-align: center;
-      padding: 3rem 1.25rem 2rem;
-      max-width: 500px;
-      margin: 0 auto;
-    }
+  /* HOW IT WORKS */
+  .how {
+    max-width: 440px;
+    margin: 0 auto 2.5rem;
+    padding: 0 1.25rem;
+  }
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 1.1rem;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-body strong { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+  .step-body span { font-size: 0.8rem; color: var(--muted); font-weight: 300; }
 
-    .eyebrow {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 1rem;
-    }
+  /* BOTTOM CTA */
+  .bottom-cta {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background: var(--green-dk);
+    color: #fff;
+  }
+  .bottom-cta h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+  .bottom-cta p { font-size: 0.88rem; font-weight: 300; opacity: 0.82; margin-bottom: 1.5rem; }
+  .cta-outline {
+    display: inline-block;
+    padding: 13px 28px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.15s;
+  }
+  .cta-outline:hover { background: rgba(255,255,255,0.12); }
 
-    h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.9rem, 6vw, 2.6rem);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    h1 em {
-      font-style: italic;
-      color: var(--green);
-    }
-
-    .subtext {
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--muted);
-      max-width: 360px;
-      margin: 0 auto 2rem;
-      line-height: 1.65;
-    }
-
-    /* ── FORM CARD ────────────────────────────────── */
-    .form-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem 1.25rem;
-      max-width: 440px;
-      margin: 0 auto 1.25rem;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-    }
-
-    .form-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-
-    .field {
-      margin-bottom: 0.85rem;
-    }
-
-    .field label {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      margin-bottom: 4px;
-      text-transform: uppercase;
-    }
-
-    .field input,
-    .field select {
-      width: 100%;
-      padding: 11px 14px;
-      font-family: 'Mulish', sans-serif;
-      font-size: 0.9rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      color: var(--text);
-      appearance: none;
-      -webkit-appearance: none;
-      transition: border-color 0.15s;
-      outline: none;
-    }
-
-    .field input:focus,
-    .field select:focus {
-      border-color: var(--green);
-      background: var(--white);
-    }
-
-    .field input::placeholder { color: #aab0b8; }
-
-    .cta-btn {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      background: var(--green);
-      color: #fff;
-      font-family: 'Mulish', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border: none;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      margin-top: 4px;
-      letter-spacing: 0.01em;
-      transition: background 0.15s, transform 0.1s;
-    }
-
-    .cta-btn:hover { background: var(--green-dk); }
-    .cta-btn:active { transform: scale(0.99); }
-    .cta-btn:disabled { background: #9dcfbe; cursor: default; }
-
-    .trust-line {
-      font-size: 0.68rem;
-      color: var(--muted);
-      text-align: center;
-      margin-top: 0.75rem;
-    }
-
-    /* ── SUCCESS STATE ────────────────────────────── */
-    .success-card {
-      display: none;
-      background: var(--green-lt);
-      border: 1px solid #9fd8c0;
-      border-radius: var(--radius);
-      padding: 1.75rem 1.25rem;
-      max-width: 440px;
-      margin: 0 auto 1.25rem;
-      text-align: center;
-    }
-
-    .success-card .checkmark {
-      width: 44px;
-      height: 44px;
-      background: var(--green);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
-
-    .success-card h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .success-card p {
-      font-size: 0.85rem;
-      color: var(--green-dk);
-    }
-
-    /* ── SOCIAL PROOF ─────────────────────────────── */
-    .social-proof {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      max-width: 440px;
-      margin: 0 auto 2.5rem;
-      padding: 0 1.25rem;
-    }
-
-    .avatars {
-      display: flex;
-    }
-
-    .av {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--green);
-      border: 2px solid var(--bg);
-      color: #fff;
-      font-size: 0.6rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: -7px;
-    }
-
-    .av:first-child { margin-left: 0; }
-
-    .proof-text {
-      font-size: 0.75rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    .proof-text strong { color: var(--text); }
-
-    /* ── DIVIDER ──────────────────────────────────── */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      max-width: 440px;
-      margin: 0 auto 2rem;
-    }
-
-    /* ── BENEFITS ─────────────────────────────────── */
-    .benefits {
-      max-width: 440px;
-      margin: 0 auto 2.5rem;
-      padding: 0 1.25rem;
-    }
-
-    .section-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .benefit {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding-bottom: 1.25rem;
-      margin-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .benefit:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .benefit-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-sm);
-      background: var(--green-lt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .benefit-title {
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 3px;
-    }
-
-    .benefit-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.55;
-      font-weight: 300;
-    }
-
-    /* ── FOOTER ───────────────────────────────────── */
-    footer {
-      text-align: center;
-      padding: 1.5rem 1.25rem 2.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    footer p {
-      font-size: 0.7rem;
-      color: #bbb;
-      line-height: 1.8;
-    }
-
-    /* ── PAGE FADE-IN ─────────────────────────────── */
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero, .form-card, .social-proof, .benefits {
-      animation: fadein 0.5s ease both;
-    }
-    .form-card    { animation-delay: 0.08s; }
-    .social-proof { animation-delay: 0.14s; }
-    .benefits     { animation-delay: 0.2s; }
-  </style>
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+  footer p { font-size: 0.68rem; color: #c0c5cc; line-height: 1.9; }
+</style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="/" class="logo">Food<span>Trace</span></a>
-    <span class="nav-badge">Early Access</span>
-  </nav>
+<!-- NAV -->
+<nav>
+  <span class="logo">Food<span>Trace</span></span>
+  <span class="nav-pill">Early Access</span>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="eyebrow">Food transparency, finally</div>
-    <h1>Scan your food.<br><em>Know where it comes from.</em></h1>
-    <p class="subtext">
-      One QR code at your table reveals farm origin, allergens,
-      freshness dates, and verified certifications — instantly.
-    </p>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Food transparency, finally</div>
+  <h1>Scan your food.<br><em>Know where it comes from.</em></h1>
+  <p class="subtext">See ingredient origin, freshness, allergens, and sourcing details in seconds.</p>
+</section>
 
-  <!-- EMAIL FORM -->
+<!-- FORM -->
+<div class="form-wrap">
   <div class="form-card" id="formCard">
-    <div class="form-title">Get early access — it's free</div>
+    <div class="form-heading">Get early access — it's free</div>
 
     <div class="field">
       <label for="fname">First name</label>
@@ -402,179 +342,250 @@
     </div>
 
     <div class="field">
-      <label for="email">Email address</label>
-      <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+      <label for="femail">Email address</label>
+      <input type="email" id="femail" placeholder="you@example.com" autocomplete="email" />
     </div>
 
     <div class="field">
-      <label for="reason">I care most about</label>
-      <select id="reason">
+      <label for="freason">I care most about</label>
+      <select id="freason">
         <option value="">Select one</option>
-        <option value="allergens">Knowing allergen information</option>
-        <option value="sourcing">Supporting sustainable sourcing</option>
-        <option value="nutrition">Tracking nutritional details</option>
-        <option value="transparency">General food transparency</option>
+        <option value="allergens">Allergens &amp; dietary safety</option>
+        <option value="freshness">Freshness</option>
+        <option value="origin">Ingredient origin</option>
+        <option value="certifications">Certifications</option>
       </select>
     </div>
 
-    <button class="cta-btn" id="ctaBtn" onclick="handleSubmit()">
-      Reserve my early access spot →
-    </button>
-    <div class="trust-line">🔒 No spam. No payment. Unsubscribe anytime.</div>
+    <button class="cta-btn" id="ctaBtn" onclick="handleSubmit()">Get Early Access &#8594;</button>
+    <p class="trust">&#128274; No spam. Academic project. Data used only for research.</p>
   </div>
 
-  <!-- SUCCESS STATE -->
   <div class="success-card" id="successCard">
-    <div class="checkmark">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M4 10l5 5 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="success-icon">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 11l5.5 5.5 9-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     <h2>You're on the list!</h2>
-    <p>We'll send you a note when FoodTrace launches in your city. Thank you for joining.</p>
+    <p>Thank you. We'll reach out when FoodTrace launches. Your input helps shape the project.</p>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="proof">
+  <div class="avatars">
+    <div class="av">M</div>
+    <div class="av">J</div>
+    <div class="av">A</div>
+    <div class="av">+</div>
+  </div>
+  <div class="proof-text"><strong>340+ people</strong> joined the waitlist this week</div>
+</div>
+
+<hr />
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="section-label">Why it matters</div>
+
+  <div class="benefit">
+    <div class="b-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="8" stroke="#1a9e74" stroke-width="1.8"/>
+        <path d="M6 10l3 3 5-5" stroke="#1a9e74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <div class="b-title">Know what is really on your plate</div>
+      <div class="b-desc">Full ingredient lists, preparation methods, and sourcing details — not just what the menu says.</div>
+    </div>
   </div>
 
-  <!-- SOCIAL PROOF -->
-  <div class="social-proof">
-    <div class="avatars">
-      <div class="av">M</div>
-      <div class="av">J</div>
-      <div class="av">A</div>
-      <div class="av" style="background:#0e6b4f;">+</div>
+  <div class="benefit">
+    <div class="b-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8S14.42 2 10 2zm0 4a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm0 10a6 6 0 01-4.8-2.4c.03-1.59 3.21-2.47 4.8-2.47s4.77.88 4.8 2.47A6 6 0 0110 16z" fill="#1a9e74"/>
+      </svg>
     </div>
-    <div class="proof-text"><strong>340+ people</strong> joined the waitlist this week</div>
+    <div>
+      <div class="b-title">Check allergens and dietary risks</div>
+      <div class="b-desc">Instant allergen flags for every dish — no more guessing or asking the server twice.</div>
+    </div>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- BENEFITS -->
-  <section class="benefits">
-    <div class="section-label">Why it matters</div>
-
-    <div class="benefit">
-      <div class="benefit-icon">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M9 1C4.58 1 1 4.58 1 9s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a2 2 0 110 4 2 2 0 010-4zm0 9a6 6 0 01-4.8-2.4c.02-1.6 3.2-2.48 4.8-2.48 1.6 0 4.78.88 4.8 2.48A6 6 0 019 14z" fill="#1a9e74"/>
-        </svg>
-      </div>
-      <div>
-        <div class="benefit-title">Know your allergens before you order</div>
-        <div class="benefit-desc">Every ingredient and allergen flag, instantly. No more hoping the menu note is accurate.</div>
-      </div>
+  <div class="benefit">
+    <div class="b-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L3 6v8l7 4 7-4V6l-7-4zm0 2.5l5 2.86v5.28L10 15.5 5 12.64V7.36L10 4.5z" fill="#1a9e74"/>
+      </svg>
     </div>
-
-    <div class="benefit">
-      <div class="benefit-icon">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M9 1L2 5.5v7L9 17l7-4.5v-7L9 1zm0 2.2l5 3.2v5.2L9 14.8 4 11.6V6.4l5-3.2z" fill="#1a9e74"/>
-        </svg>
-      </div>
-      <div>
-        <div class="benefit-title">Trace food from farm to your plate</div>
-        <div class="benefit-desc">Farm name, origin country, harvest date — all in one scan. Full farm-to-fork visibility.</div>
-      </div>
+    <div>
+      <div class="b-title">Trace ingredients from farm to table</div>
+      <div class="b-desc">Farm name, origin country, harvest date, and verified sustainability certifications.</div>
     </div>
+  </div>
+</section>
 
-    <div class="benefit">
-      <div class="benefit-icon">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <circle cx="9" cy="9" r="7" stroke="#1a9e74" stroke-width="1.8"/>
-          <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#1a9e74" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div>
-        <div class="benefit-title">Verified certifications, not just claims</div>
-        <div class="benefit-desc">Organic, vegan, halal, MSC — see which are verified by a third party, not self-declared.</div>
-      </div>
+<hr />
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-label">How it works</div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <strong>Sit down at a partner restaurant</strong>
+      <span>Look for the FoodTrace QR code on your table or menu card.</span>
     </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      FoodTrace · Early Access Waitlist<br>
-      A Lean Startup experiment in food transparency.<br>
-      Built with care · <a href="mailto:hello@foodtrace.co" style="color:#bbb;">hello@foodtrace.co</a>
-    </p>
-  </footer>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <strong>Scan with your phone camera</strong>
+      <span>No app download needed. Opens instantly in your browser.</span>
+    </div>
+  </div>
 
-  <script>
-    // ── UTM parameter capture ──────────────────────
-    function getUTM() {
-      const p = new URLSearchParams(window.location.search);
-      return {
-        source:   p.get('utm_source')   || '(direct)',
-        medium:   p.get('utm_medium')   || '(none)',
-        campaign: p.get('utm_campaign') || '(none)',
-      };
-    }
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <strong>See the full story of your dish</strong>
+      <span>Origin, freshness, allergens, and certifications — all verified and clear.</span>
+    </div>
+  </div>
+</section>
 
-    // ── Scroll depth tracking ──────────────────────
-    let maxScroll = 0;
-    window.addEventListener('scroll', () => {
-      const pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-      if (pct > maxScroll) {
-        maxScroll = pct;
-        if ([25, 50, 75, 100].includes(pct)) {
-          gtag('event', 'scroll_depth', { depth: pct });
-        }
-      }
-    });
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <h2>Be the first to know<br>when we launch.</h2>
+  <p>Join 340+ people who care about what they eat.</p>
+  <button class="cta-outline" onclick="scrollToForm()">Get Early Access &#8594;</button>
+</section>
 
-    // ── Form submission ───────────────────────────
-    function handleSubmit() {
-      const name   = document.getElementById('fname').value.trim();
-      const email  = document.getElementById('email').value.trim();
-      const reason = document.getElementById('reason').value;
+<footer>
+  <p>
+    FoodTrace &middot; Early Access Waitlist<br>
+    Academic project &middot; Digital Marketing &middot; Lean Startup Experiment<br>
+    Data collected only for research purposes.
+  </p>
+</footer>
 
-      if (!name) { alert('Please enter your first name.'); return; }
-      if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+<script>
+// ============================================================
+//  SETUP INSTRUCTIONS — READ BEFORE PUBLISHING
+// ============================================================
+//
+//  This form submits to a hidden Google Form so responses
+//  land directly in your Google Sheets / Forms dashboard.
+//
+//  STEP 1 — Create your Google Form
+//    a. Go to forms.google.com and create a new form.
+//    b. Add these fields (all "Short answer" except the last):
+//       - First name        (Short answer)
+//       - Email             (Short answer)
+//       - I care most about (Multiple choice or Dropdown)
+//         Options: Allergens & dietary safety / Freshness /
+//                  Ingredient origin / Certifications
+//    c. Make sure "Collecting email addresses" is OFF
+//       (we collect it manually via our own field).
+//
+//  STEP 2 — Find your Form Action URL and entry IDs
+//    a. Open the form → click the 3-dot menu (top-right)
+//       → "Get pre-filled link"
+//    b. Fill in dummy values in every field → click "Get Link"
+//    c. Copy the URL. It looks like:
+//       https://docs.google.com/forms/d/e/LONG_ID/viewform
+//       ?usp=pp_url
+//       &entry.111111111=dummy+name
+//       &entry.222222222=dummy+email
+//       &entry.333333333=Freshness
+//    d. Your FORM_ACTION URL = replace "viewform" with "formResponse"
+//       and remove everything after the form ID part:
+//       https://docs.google.com/forms/d/e/LONG_ID/formResponse
+//    e. Your entry IDs are the entry.XXXXXXXXX numbers above.
+//
+//  STEP 3 — Paste them below, replacing the placeholder values.
+//
+//  STEP 4 — Upload index.html to GitHub and enable Pages.
+//    GitHub: Settings → Pages → Branch: main → / (root) → Save
+//
+// ============================================================
 
-      const btn = document.getElementById('ctaBtn');
-      btn.textContent = 'Saving your spot…';
-      btn.disabled = true;
+var FORM_ACTION  = 'https://docs.google.com/forms/d/e/PASTE_YOUR_FORM_ID_HERE/formResponse';
+var ENTRY_NAME   = 'entry.XXXXXXXXX';   // replace with real entry ID
+var ENTRY_EMAIL  = 'entry.YYYYYYYYY';   // replace with real entry ID
+var ENTRY_REASON = 'entry.ZZZZZZZZZ';   // replace with real entry ID
 
-      // ── GA4 conversion event ──────────────────
-      gtag('event', 'sign_up', {
-        method:           'email_form',
-        user_segment:     reason || 'not_selected',
-        utm_source:       getUTM().source,
-        utm_campaign:     getUTM().campaign,
-      });
+function scrollToForm() {
+  var card = document.getElementById('formCard');
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(function() { document.getElementById('fname').focus(); }, 400);
+}
 
-      // ── Send to Formspree (replace with your endpoint) ──
-      // To use: go to formspree.io, create a free form, replace the URL below
-      const FORMSPREE_URL = 'https://formspree.io/f/REPLACE_THIS';
+function handleSubmit() {
+  var name   = document.getElementById('fname').value.trim();
+  var email  = document.getElementById('femail').value.trim();
+  var reason = document.getElementById('freason').value;
 
-      fetch(FORMSPREE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          reason,
-          utm_source:   getUTM().source,
-          utm_medium:   getUTM().medium,
-          utm_campaign: getUTM().campaign,
-          submitted_at: new Date().toISOString(),
-        }),
-      })
-      .then(r => {
-        document.getElementById('formCard').style.display = 'none';
-        document.getElementById('successCard').style.display = 'block';
-      })
-      .catch(() => {
-        // Fail gracefully — show success anyway for the experiment
-        document.getElementById('formCard').style.display = 'none';
-        document.getElementById('successCard').style.display = 'block';
-      });
-    }
+  if (!name) {
+    alert('Please enter your first name.');
+    return;
+  }
+  if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    alert('Please enter a valid email address.');
+    return;
+  }
 
-    // ── Allow Enter key to submit ─────────────────
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') handleSubmit();
-    });
-  </script>
+  var btn = document.getElementById('ctaBtn');
+  btn.textContent = 'Saving your spot\u2026';
+  btn.disabled = true;
 
+  // Submit to Google Form via hidden iframe (avoids redirect page)
+  var iframe = document.createElement('iframe');
+  iframe.name = 'ft_iframe';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = FORM_ACTION;
+  form.target = 'ft_iframe';
+
+  function addField(entryName, value) {
+    var input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = entryName;
+    input.value = value;
+    form.appendChild(input);
+  }
+
+  addField(ENTRY_NAME,   name);
+  addField(ENTRY_EMAIL,  email);
+  addField(ENTRY_REASON, reason || 'Not selected');
+
+  document.body.appendChild(form);
+  form.submit();
+
+  // Show success state right away
+  setTimeout(function() {
+    document.getElementById('formCard').style.display = 'none';
+    document.getElementById('successCard').style.display = 'block';
+  }, 400);
+
+  // Cleanup after a few seconds
+  setTimeout(function() {
+    if (document.body.contains(form))   document.body.removeChild(form);
+    if (document.body.contains(iframe)) document.body.removeChild(iframe);
+  }, 5000);
+}
+
+// Allow Enter key to submit
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleSubmit();
+});
+</script>
 </body>
 </html>
