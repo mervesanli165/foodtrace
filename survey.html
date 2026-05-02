@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FoodTrace — Deneyim Anketi</title>
+<title>FoodTrace — Anket</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
 
@@ -17,16 +17,19 @@
   --text:#1a1a1a;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --bg:#f9faf8;
-  --white:#ffffff;
 }
 
 body {
-  margin:0;
   font-family:'Mulish', sans-serif;
-  background:var(--bg);
   color:var(--text);
   min-height:100vh;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)),
+    url("food-bg.png.png");
+
+  background-size:cover;
+  background-position:center;
 }
 
 nav {
@@ -34,7 +37,7 @@ nav {
   justify-content:space-between;
   align-items:center;
   padding:1rem 1.5rem;
-  background:white;
+  background:rgba(255,255,255,0.9);
   border-bottom:1px solid var(--border);
 }
 
@@ -55,7 +58,6 @@ nav {
 }
 
 main {
-  width:100%;
   max-width:520px;
   margin:0 auto;
   padding:2rem 1rem 3rem;
@@ -78,16 +80,15 @@ h1 {
 
 .form-container {
   width:100%;
-  background:white;
-  border:1px solid var(--border);
+  background:rgba(255,255,255,0.96);
   border-radius:16px;
   padding:0.5rem;
-  box-shadow:0 2px 20px rgba(0,0,0,0.06);
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
 }
 
 iframe {
   width:100%;
-  height:760px;
+  height:780px;
   border:none;
   border-radius:12px;
 }
@@ -95,7 +96,6 @@ iframe {
 footer {
   text-align:center;
   padding:1.25rem;
-  border-top:1px solid var(--border);
   font-size:0.7rem;
   color:#9ca3af;
 }
@@ -110,11 +110,12 @@ footer {
 </nav>
 
 <main>
+
   <h1>Deneyiminizi değerlendirin</h1>
 
   <p class="sub">
-    QR okutup bilgiye ulaşma deneyiminin ne kadar kolay ve anlaşılır olduğunu ölçüyoruz.
-    Yanıtınız yalnızca akademik proje kapsamında değerlendirilecektir.
+    QR kod ile bilgiye ulaşma deneyimini test ediyoruz. 
+    Geri bildiriminiz, bu sistemi geliştirmemize yardımcı olacaktır.
   </p>
 
   <div class="form-container">
@@ -124,6 +125,7 @@ footer {
       Yükleniyor…
     </iframe>
   </div>
+
 </main>
 
 <footer>
