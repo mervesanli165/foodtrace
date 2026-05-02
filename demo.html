@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoodTrace — Demo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -8,8 +17,6 @@
   --text:#1a1a1a;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --bg:#f9faf8;
-  --white:#ffffff;
 }
 
 body {
@@ -38,6 +45,7 @@ nav {
 
 .logo {
   font-family:'Lora', serif;
+  font-size:1.2rem;
   text-decoration:none;
   color:var(--text);
 }
@@ -56,15 +64,35 @@ main {
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:2rem;
+  padding:2rem 1.25rem;
 }
 
 .card {
-  background:rgba(255,255,255,0.95);
+  background:rgba(255,255,255,0.96);
   border-radius:16px;
-  padding:1.5rem;
+  padding:1.6rem;
   width:100%;
   max-width:400px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+
+.demo-tag {
+  font-size:0.7rem;
+  color:var(--green-dk);
+  margin-bottom:1rem;
+  font-weight:600;
+}
+
+.dish-name {
+  font-family:'Lora', serif;
+  font-size:1.5rem;
+  margin-bottom:0.3rem;
+}
+
+.dish-desc {
+  font-size:0.82rem;
+  color:var(--muted);
+  margin-bottom:1.3rem;
 }
 
 .info-row {
@@ -74,15 +102,124 @@ main {
   border-bottom:1px solid var(--border);
 }
 
+.info-row:last-child { border-bottom:none; }
+
+.info-key {
+  font-size:0.75rem;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.info-val {
+  font-size:0.9rem;
+  font-weight:600;
+  text-align:right;
+  max-width:60%;
+}
+
+.info-val.green { color:var(--green); }
+
 .continue-btn {
-  margin-top:1.5rem;
-  padding:14px;
+  display:block;
   width:100%;
+  max-width:400px;
+  margin:1.5rem auto 0;
+  padding:14px;
   background:var(--green);
   color:white;
   border:none;
   border-radius:8px;
-  text-align:center;
   text-decoration:none;
+  text-align:center;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.continue-btn:hover { background:var(--green-dk); }
+
+.hint {
+  text-align:center;
+  font-size:0.75rem;
+  color:var(--muted);
+  margin-top:0.9rem;
+}
+
+footer {
+  text-align:center;
+  padding:1rem;
+  font-size:0.7rem;
+  color:#9ca3af;
 }
 </style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Food<span>Trace</span></a>
+  <span class="step-label">Adım 2 / 3</span>
+</nav>
+
+<main>
+
+  <div class="card">
+    <div class="demo-tag">🔍 Örnek sonuç</div>
+
+    <div class="dish-name">Izgara Tavuk</div>
+    <div class="dish-desc">QR kod okutulduktan sonra görülebilecek örnek bilgi</div>
+
+    <div class="info-row">
+      <span class="info-key">Menşei</span>
+      <span class="info-val">Balıkesir, Türkiye</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-key">Tazelik</span>
+      <span class="info-val green">2 gün içinde tedarik edildi</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-key">Alerjen</span>
+      <span class="info-val green">Alerjen bulunmuyor</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-key">Sertifika</span>
+      <span class="info-val">Organik üretim doğrulandı</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-key">Üretici</span>
+      <span class="info-val">Yeşiltepe Çiftliği</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-key">Hazırlama</span>
+      <span class="info-val">Izgara · Katkısız</span>
+    </div>
+  </div>
+
+  <a class="continue-btn" href="survey.html" id="continueBtn">
+    Deneyimi Değerlendir →
+  </a>
+
+  <p class="hint">
+    Bu ekran demo amaçlıdır. Gerçek kullanımda bilgiler yemeğe özel gösterilir.
+  </p>
+
+</main>
+
+<footer>
+  FoodTrace · MVP · Dijital Pazarlama Projesi
+</footer>
+
+<script>
+var t0 = Date.now();
+document.getElementById('continueBtn').addEventListener('click', function() {
+  var seconds = Math.round((Date.now() - t0) / 1000);
+  try { localStorage.setItem('ft_demo_time', seconds); } catch(e) {}
+});
+</script>
+
+</body>
+</html>
