@@ -1,225 +1,324 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FoodTrace — Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>FoodTrace — Ürün Bilgisi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --green:#1a9e74;
-  --green-dk:#0e6b4f;
-  --green-lt:#e3f5ee;
-  --text:#1a1a1a;
-  --muted:#6b7280;
-  --border:#e5e7eb;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-body {
-  font-family:'Mulish', sans-serif;
-  color:var(--text);
+:root{
+  --green-dark:#1B4332;
+  --green-mid:#2D6A4F;
+  --green:#1B8A5A;
+  --green-pale:#E4F5EC;
+  --cream:#F7F4EE;
+  --cream-dark:#EDE9E3;
+  --text:#1C1A17;
+  --text-muted:#6B6560;
+}
+
+html,body{
+  height:100%;
+  background:#D0CCC4;
   display:flex;
-  flex-direction:column;
-  min-height:100vh;
-
-  background:
-    linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.92)),
-    url("food-bg.png.png");
-
-  background-size:cover;
-  background-position:center;
-}
-
-nav {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:1rem 1.5rem;
-  background:rgba(255,255,255,0.9);
-  border-bottom:1px solid var(--border);
-}
-
-.logo {
-  font-family:'Lora', serif;
-  font-size:1.2rem;
-  text-decoration:none;
-  color:var(--text);
-}
-
-.logo span { color:var(--green); }
-
-.step-label {
-  font-size:0.65rem;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-
-main {
-  flex:1;
-  display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:2rem 1.25rem;
+  font-family:'DM Sans',sans-serif;
+  overflow:hidden;
 }
 
-.card {
-  background:rgba(255,255,255,0.96);
-  border-radius:16px;
-  padding:1.6rem;
+.iphone{
+  width:375px;
+  height:812px;
+  background:#111;
+  border-radius:54px;
+  padding:12px;
+  box-shadow:
+  0 0 0 1px #333,
+  0 40px 100px rgba(0,0,0,0.55),
+  0 10px 30px rgba(0,0,0,0.35);
+  position:relative;
+}
+
+.screen{
   width:100%;
-  max-width:400px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  height:100%;
+  border-radius:44px;
+  overflow:hidden;
+  background:var(--cream);
+  position:relative;
+  display:flex;
+  flex-direction:column;
 }
 
-.demo-tag {
-  font-size:0.7rem;
-  color:var(--green-dk);
-  margin-bottom:1rem;
-  font-weight:600;
-}
-
-.dish-name {
-  font-family:'Lora', serif;
-  font-size:1.5rem;
-  margin-bottom:0.3rem;
-}
-
-.dish-desc {
-  font-size:0.82rem;
-  color:var(--muted);
-  margin-bottom:1.3rem;
-}
-
-.info-row {
+.statusbar{
+  height:48px;
   display:flex;
   justify-content:space-between;
-  padding:0.6rem 0;
-  border-bottom:1px solid var(--border);
+  align-items:flex-end;
+  padding:0 22px 8px;
+  font-size:13px;
 }
 
-.info-row:last-child { border-bottom:none; }
+.content{
+  flex:1;
+  padding:20px 24px 24px;
+  overflow:auto;
+}
 
-.info-key {
-  font-size:0.75rem;
-  color:var(--muted);
+.back-btn{
+  text-decoration:none;
+  color:var(--green);
+  font-size:13px;
   font-weight:600;
+  margin-bottom:18px;
+  display:inline-block;
 }
 
-.info-val {
-  font-size:0.9rem;
-  font-weight:600;
-  text-align:right;
-  max-width:60%;
+.hero-card{
+  background:white;
+  border-radius:24px;
+  overflow:hidden;
+  margin-bottom:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.06);
 }
 
-.info-val.green { color:var(--green); }
-
-.continue-btn {
-  display:block;
+.hero-img{
   width:100%;
-  max-width:400px;
-  margin:1.5rem auto 0;
-  padding:14px;
+  height:220px;
+  object-fit:cover;
+}
+
+.hero-body{
+  padding:20px;
+}
+
+.kicker{
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--green);
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  line-height:1.15;
+  color:var(--text);
+  margin-bottom:12px;
+}
+
+.subtitle{
+  color:var(--text-muted);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.info-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.info-card{
+  background:white;
+  border-radius:18px;
+  padding:16px;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,0.05);
+}
+
+.icon{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:var(--green-pale);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  font-size:18px;
+}
+
+.info-title{
+  font-size:13px;
+  color:var(--text-muted);
+  margin-bottom:3px;
+}
+
+.info-value{
+  font-size:15px;
+  color:var(--text);
+  font-weight:600;
+  line-height:1.4;
+}
+
+.cta{
+  margin-top:24px;
+  display:flex;
+  gap:10px;
+}
+
+.nav-btn{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:var(--green);
+  font-size:20px;
+  box-shadow:0 4px 18px rgba(0,0,0,0.05);
+}
+
+.cta-btn{
+  flex:1;
+  height:54px;
+  border-radius:18px;
   background:var(--green);
   color:white;
-  border:none;
-  border-radius:8px;
   text-decoration:none;
-  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-weight:600;
-  transition:0.2s;
-}
-
-.continue-btn:hover { background:var(--green-dk); }
-
-.hint {
-  text-align:center;
-  font-size:0.75rem;
-  color:var(--muted);
-  margin-top:0.9rem;
-}
-
-footer {
-  text-align:center;
-  padding:1rem;
-  font-size:0.7rem;
-  color:#9ca3af;
+  font-size:15px;
+  box-shadow:0 8px 25px rgba(27,138,90,0.28);
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <a class="logo" href="index.html">Food<span>Trace</span></a>
-  <span class="step-label">Adım 2 / 3</span>
-</nav>
+<div class="iphone">
 
-<main>
+<div class="screen">
 
-  <div class="card">
-    <div class="demo-tag">🔍 Örnek sonuç</div>
+<div class="statusbar">
+<div>09:41</div>
+<div>●●● WiFi 🔋</div>
+</div>
 
-    <div class="dish-name">Izgara Tavuk</div>
-    <div class="dish-desc">QR kod okutulduktan sonra görülebilecek örnek bilgi</div>
+<div class="content">
 
-    <div class="info-row">
-      <span class="info-key">Menşei</span>
-      <span class="info-val">Balıkesir, Türkiye</span>
-    </div>
+<a class="back-btn" href="index.html">
+← Ana Sayfa
+</a>
 
-    <div class="info-row">
-      <span class="info-key">Tazelik</span>
-      <span class="info-val green">2 gün içinde tedarik edildi</span>
-    </div>
+<div class="hero-card">
 
-    <div class="info-row">
-      <span class="info-key">Alerjen</span>
-      <span class="info-val green">Alerjen bulunmuyor</span>
-    </div>
+<img
+class="hero-img"
+src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop"
+>
 
-    <div class="info-row">
-      <span class="info-key">Sertifika</span>
-      <span class="info-val">Organik üretim doğrulandı</span>
-    </div>
+<div class="hero-body">
 
-    <div class="info-row">
-      <span class="info-key">Üretici</span>
-      <span class="info-val">Yeşiltepe Çiftliği</span>
-    </div>
+<div class="kicker">
+FoodTrace Bilgisi
+</div>
 
-    <div class="info-row">
-      <span class="info-key">Hazırlama</span>
-      <span class="info-val">Izgara · Katkısız</span>
-    </div>
-  </div>
+<div class="title">
+Izgara Tavuk Salatası
+</div>
 
-  <a class="continue-btn" href="survey.html" id="continueBtn">
-    Deneyimi Değerlendir →
-  </a>
+<div class="subtitle">
+Bu yemek için üretici, tazelik ve içerik bilgileri görüntülenmektedir.
+</div>
 
-  <p class="hint">
-    Bu ekran demo amaçlıdır. Gerçek kullanımda bilgiler yemeğe özel gösterilir.
-  </p>
+</div>
+</div>
 
-</main>
+<div class="info-grid">
 
-<footer>
-  FoodTrace · MVP · Dijital Pazarlama Projesi
-</footer>
+<div class="info-card">
+<div class="icon">🌍</div>
 
-<script>
-var t0 = Date.now();
-document.getElementById('continueBtn').addEventListener('click', function() {
-  var seconds = Math.round((Date.now() - t0) / 1000);
-  try { localStorage.setItem('ft_demo_time', seconds); } catch(e) {}
-});
-</script>
+<div>
+<div class="info-title">
+Menşei
+</div>
+
+<div class="info-value">
+Balıkesir, Türkiye
+</div>
+</div>
+</div>
+
+<div class="info-card">
+<div class="icon">🛡️</div>
+
+<div>
+<div class="info-title">
+Alerjen Bilgisi
+</div>
+
+<div class="info-value">
+Alerjen içermez
+</div>
+</div>
+</div>
+
+<div class="info-card">
+<div class="icon">⏱️</div>
+
+<div>
+<div class="info-title">
+Tazelik
+</div>
+
+<div class="info-value">
+2 gün önce tedarik edildi
+</div>
+</div>
+</div>
+
+<div class="info-card">
+<div class="icon">🚚</div>
+
+<div>
+<div class="info-title">
+Tedarikçi
+</div>
+
+<div class="info-value">
+Yeşiltepe Organik Çiftliği
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="cta">
+
+<a class="nav-btn" href="index.html">
+←
+</a>
+
+<a class="cta-btn" href="survey.html">
+Deneyimi Değerlendir
+</a>
+
+</div>
+
+</div>
+</div>
+</div>
 
 </body>
 </html>
