@@ -1,11 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FoodTrace — Başlangıç</title>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -71,6 +72,7 @@ html, body {
   display: flex; align-items: flex-end; justify-content: space-between;
   padding: 0 22px 8px; z-index: 100;
 }
+
 .sb-time { font-size: 14px; font-weight: 600; color: var(--text); }
 .sb-icons { font-size: 11px; color: #888; }
 
@@ -172,7 +174,6 @@ html, body {
   display: flex; align-items: center; justify-content: center;
 }
 
-/* page indicator */
 .page-dots {
   position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 5px; z-index: 200;
@@ -181,6 +182,7 @@ html, body {
 .dot.active { background: var(--green); width: 18px; border-radius: 3px; }
 </style>
 </head>
+
 <body>
 <div class="iphone">
   <div class="btn-side btn-power"></div>
@@ -212,34 +214,49 @@ html, body {
 
       <div class="divider"></div>
 
-      <p class="body-text">QR kodu okut, yemeğin menşei, tazeliği ve alerjen bilgilerini saniyeler içinde gör.</p>
+      <p class="body-text">
+        QR kodu okut, yemeğin menşei, tazeliği ve alerjen bilgilerini saniyeler içinde gör.
+      </p>
 
       <div class="features">
         <div class="feat-row">
           <div class="feat-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/>
+            </svg>
           </div>
           <span class="feat-label"><strong>Menşei & üretici</strong> bilgisi anında</span>
         </div>
+
         <div class="feat-row">
           <div class="feat-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
           </div>
           <span class="feat-label"><strong>Alerjen</strong> uyarıları görünür</span>
         </div>
+
         <div class="feat-row">
           <div class="feat-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
           </div>
           <span class="feat-label"><strong>Tazelik</strong> skoru ve tedarik tarihi</span>
         </div>
       </div>
 
-      <a class="cta-btn" href="foodtrace-2-product.html">
+      <a class="cta-btn" href="demo.html">
         <div class="cta-shimmer"></div>
         <span class="cta-text">Deneyimi Başlat</span>
         <div class="cta-arrow">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
         </div>
       </a>
 
@@ -255,14 +272,27 @@ html, body {
     <div class="bottom">
       <div class="qr-card">
         <div class="qr-icon-box">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+            <rect x="14" y="14" width="3" height="3"/>
+            <rect x="18" y="14" width="3" height="3"/>
+            <rect x="14" y="18" width="3" height="3"/>
+            <rect x="18" y="18" width="3" height="3"/>
+          </svg>
         </div>
+
         <div class="qr-texts">
           <div class="qr-t1">Masandaki QR kodu tara</div>
           <div class="qr-t2">Kamera uygulamasını aç</div>
         </div>
+
         <div class="qr-go">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1B8A5A" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
         </div>
       </div>
     </div>
